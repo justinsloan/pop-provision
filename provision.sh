@@ -16,10 +16,10 @@ sudo install -o root -g root -m 644 vscodium.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
 
 sudo apt update 
-sudo apt upgrade
-sudo apt autoremove
+sudo apt -y upgrade
+sudo apt -y autoremove
 
-sudo apt install htop tmux git nmap barrier codium python3-pip twine zotero virtualbox transmission keepassxc cmatrix curtail imagemagick nautilus-image-converter ttf-mscorefonts-installer microsoft-edge-stable
+sudo apt -y install htop tmux git nmap barrier codium python3-pip twine zotero virtualbox transmission keepassxc cmatrix curtail imagemagick nautilus-image-converter ttf-mscorefonts-installer microsoft-edge-stable
 
 # Install Microsoft Fonts
 mkdir ~/.fonts
@@ -61,3 +61,5 @@ fc-cache -fv ~/.fonts
 sudo rm ~/Downloads/$ARCHIVE
 
 echo "Provisioning of this system is complete."
+
+exit 0
