@@ -8,7 +8,14 @@ fi
 
 echo "Starting provisioning."
 
-sudo apt purge firefox firefox-esr chromium epiphany-browser evolution transmission-gtk
+sudo apt -y install curl
+
+sudo apt -y purge firefox 
+sudo apt -y purge firefox-esr 
+sudo apt -y purge chromium 
+sudo apt -y purge epiphany-browser 
+sudo apt -y purge evolution 
+sudo apt -y purge transmission-gtk
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
@@ -21,7 +28,6 @@ sudo apt update
 sudo apt -y upgrade
 sudo apt -y autoremove
 
-sudo apt -y install cabextract 
 sudo apt -y install htop 
 sudo apt -y install tmux 
 sudo apt -y install git 
@@ -39,6 +45,9 @@ sudo apt -y install curtail
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter 
 sudo apt -y install microsoft-edge-stable
+sudo apt -y install ttf-mscorefonts-installer
+
+who am i | awk '{print $1}'
 
 echo "Provisioning of this system is complete."
 
