@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo $USER
-echo $SUDO_USER
-
 # Superuser permission required.
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
@@ -49,6 +46,8 @@ sudo apt -y install imagemagick
 sudo apt -y install nautilus-image-converter 
 sudo apt -y install microsoft-edge-stable
 sudo apt -y install ttf-mscorefonts-installer
+
+su - $SUDO_USER && mkdir ~/.fonts && curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | bash
 
 echo "Provisioning of this system is complete."
 
