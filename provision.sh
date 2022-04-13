@@ -24,7 +24,21 @@ sudo apt -y autoremove
 sudo apt -y install cabextract 
 sudo apt -y install htop 
 sudo apt -y install tmux 
-sudo apt -y install git nmap barrier codium python3-pip twine zotero virtualbox transmission keepassxc cmatrix curtail imagemagick nautilus-image-converter microsoft-edge-stable
+sudo apt -y install git 
+sudo apt -y install nmap 
+sudo apt -y install barrier 
+sudo apt -y install codium 
+sudo apt -y install python3-pip 
+sudo apt -y install twine 
+sudo apt -y install zotero 
+sudo apt -y install virtualbox 
+sudo apt -y install transmission 
+sudo apt -y install keepassxc 
+sudo apt -y install cmatrix 
+sudo apt -y install curtail 
+sudo apt -y install imagemagick 
+sudo apt -y install nautilus-image-converter 
+sudo apt -y install microsoft-edge-stable
 
 echo "Provisioning of this system is complete."
 
