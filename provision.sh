@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo $USER
+echo $SUDO_USER
 
 # Superuser permission required.
 if [ "$EUID" -ne 0 ]
