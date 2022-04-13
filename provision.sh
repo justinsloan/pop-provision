@@ -28,6 +28,7 @@ sudo apt update
 sudo apt -y upgrade
 sudo apt -y autoremove
 
+sudo apt -y install cabextract
 sudo apt -y install htop 
 sudo apt -y install tmux 
 sudo apt -y install git 
@@ -47,7 +48,9 @@ sudo apt -y install nautilus-image-converter
 sudo apt -y install microsoft-edge-stable
 sudo apt -y install ttf-mscorefonts-installer
 
-su - $SUDO_USER && mkdir ~/.fonts && curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | bash
+# Install Microsoft Fonts
+sudo -u $SUDO_USER mkdir ~/.fonts 
+sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | bash
 
 echo "Provisioning of this system is complete."
 
