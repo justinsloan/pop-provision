@@ -2,4 +2,4 @@ This is a custom bash script I use to provision a new Debian-based Linux Destop.
 
 *Use extreme caution before executing a bash script from a third party.*
 
-    curl https://raw.githubusercontent.com/justinsloan/provision/main/provision.sh | sudo bash
+    sudo curl https://raw.githubusercontent.com/justinsloan/provision/main/provision.sh | bash

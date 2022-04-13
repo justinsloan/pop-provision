@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $USER
+
 # Superuser permission required.
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
