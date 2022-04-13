@@ -8,15 +8,21 @@ fi
 
 echo "Starting provisioning."
 
-sudo apt -y install curl
+# Check for curl
+if exists curl; then 
+    echo "curl already installed"
+else
+    sudo apt -y install curl
+fi
 
+# Purge/Remove Unneeded Default Packages
 sudo apt -y purge firefox 
-sudo apt -y purge firefox-esr 
 sudo apt -y purge chromium 
 sudo apt -y purge epiphany-browser 
 sudo apt -y purge evolution 
 sudo apt -y purge transmission-gtk
 
+# Install Additional Repositories
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
@@ -27,10 +33,12 @@ sudo install -o root -g root -m 644 vscodium.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
 rm vscodium.gpg
 
+# Update the System
 sudo apt update 
 sudo apt -y upgrade
 sudo apt -y autoremove
 
+# Install Packages
 sudo apt -y install cabextract
 sudo apt -y install htop 
 sudo apt -y install tmux 
@@ -47,9 +55,13 @@ sudo apt -y install keepassxc
 sudo apt -y install cmatrix 
 sudo apt -y install curtail 
 sudo apt -y install imagemagick 
-sudo apt -y install nautilus-image-converter 
+sudo apt -y install nautilus-image-converter
+sudo apt -y install gnome-tweaks 
 sudo apt -y install microsoft-edge-stable
 sudo apt -y install ttf-mscorefonts-installer
+
+# Install Python Packages
+pip3 install quantumdiceware
 
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
