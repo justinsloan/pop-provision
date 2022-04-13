@@ -50,8 +50,6 @@ sudo apt -y install nautilus-image-converter
 sudo apt -y install microsoft-edge-stable
 sudo apt -y install ttf-mscorefonts-installer
 
-who am i | awk '{print $1}'
-
 echo "Provisioning of this system is complete."
 
 exit 0
