@@ -24,7 +24,7 @@ sudo apt -y autoremove
 sudo apt -y install cabextract 
 sudo apt -y install htop 
 sudo apt -y install tmux 
-sudo apt -y install git nmap barrier codium python3-pip twine zotero virtualbox transmission keepassxc cmatrix curtail imagemagick nautilus-image-converter ttf-mscorefonts-installer microsoft-edge-stable
+sudo apt -y install git nmap barrier codium python3-pip twine zotero virtualbox transmission keepassxc cmatrix curtail imagemagick nautilus-image-converter microsoft-edge-stable
 
 echo "Provisioning of this system is complete."
 
