@@ -52,7 +52,7 @@ sudo apt -y install microsoft-edge-stable
 sudo apt -y install ttf-mscorefonts-installer
 
 # Install Microsoft Fonts
-sudo -u $SUDO_USER mkdir ~/.fonts 
+sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | sudo -u $SUDO_USER bash
 
 echo "Provisioning of this system is complete."
