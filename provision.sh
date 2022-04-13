@@ -20,9 +20,12 @@ sudo apt -y purge transmission-gtk
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
+rm microsoft.gpg
+
 curl https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor > vscodium.gpg
 sudo install -o root -g root -m 644 vscodium.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
+rm vscodium.gpg
 
 sudo apt update 
 sudo apt -y upgrade
@@ -50,7 +53,7 @@ sudo apt -y install ttf-mscorefonts-installer
 
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir ~/.fonts 
-sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | bash
+sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | sudo -u $SUDO_USER bash
 
 echo "Provisioning of this system is complete."
 
