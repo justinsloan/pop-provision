@@ -58,7 +58,6 @@ sudo apt -y install imagemagick
 sudo apt -y install nautilus-image-converter
 sudo apt -y install gnome-tweaks 
 sudo apt -y install microsoft-edge-stable
-sudo apt -y install ttf-mscorefonts-installer
 
 # Install Python Packages
 pip3 install quantumdiceware
