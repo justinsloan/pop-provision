@@ -6,6 +6,8 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+echo "Starting provisioning."
+
 sudo apt purge firefox firefox-esr chromium epiphany-browser evolution transmission-gtk
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
