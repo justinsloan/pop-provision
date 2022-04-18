@@ -77,6 +77,8 @@ echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 echo "alias myip='curl checkip.amazonaws.com'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias update='sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 15'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias storage='ncdu'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 . /home/$SUDO_USER/.bashrc
