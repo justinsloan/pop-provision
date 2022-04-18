@@ -6,11 +6,11 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo "Starting provisioning."
+echo "===> Starting provisioning."
 
 # Check for curl
 if exists curl; then 
-    echo "curl already installed"
+    echo "===> curl already installed"
 else
     sudo apt -y install curl
 fi
@@ -41,6 +41,7 @@ sudo apt -y autoremove
 # Install Packages
 sudo apt -y install cabextract
 sudo apt -y install htop 
+sudo apt -y install ncdu
 sudo apt -y install tmux 
 sudo apt -y install git 
 sudo apt -y install nmap 
@@ -53,6 +54,7 @@ sudo apt -y install virtualbox
 sudo apt -y install transmission 
 sudo apt -y install keepassxc 
 sudo apt -y install cmatrix 
+sudo apt -y install neofetch
 sudo apt -y install curtail 
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter
@@ -66,6 +68,19 @@ pip3 install quantumdiceware
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | sudo -u $SUDO_USER bash
 
-echo "Provisioning of this system is complete."
+# Add user Home to PATH
+PATHA='export PATH=$PATH'
+PATHB="/home/$SUDO_USER/.local/bin"
+echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
+
+# Create some handy bash aliases
+echo "alias myip='curl checkip.amazonaws.com'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias update='sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
+
+# Reload the .bashrc file
+. /home/$SUDO_USER/.bashrc
+
+echo "===> Provisioning of this system is complete."
 
 exit 0
