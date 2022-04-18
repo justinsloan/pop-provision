@@ -79,6 +79,8 @@ echo "alias update='sudo apt update && sudo apt -y upgrade && sudo apt -y autore
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 15'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias storage='ncdu'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias untar='tar -zxvf '" >> /home/$SUDO_USER/.bash_aliases
+echo "alias ports='sudo netstat -tulanp'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 . /home/$SUDO_USER/.bashrc
