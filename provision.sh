@@ -6,11 +6,11 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo "===> Starting provisioning."
+echo "==> Starting provisioning."
 
 # Check for curl
 if exists curl; then 
-    echo "===> curl already installed"
+    echo "==> curl already installed"
 else
     sudo apt -y install curl
 fi
@@ -50,9 +50,12 @@ sudo apt -y install codium
 sudo apt -y install python3-pip 
 sudo apt -y install twine 
 sudo apt -y install zotero 
+sudo apt -y install emacs
+sudo apt -y install remmina
 sudo apt -y install virtualbox 
 sudo apt -y install transmission 
 sudo apt -y install keepassxc 
+sudo apt -y install torbrowser-launcher
 sudo apt -y install cmatrix 
 sudo apt -y install neofetch
 sudo apt -y install curtail 
@@ -81,10 +84,11 @@ echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 
 echo "alias storage='ncdu'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias untar='tar -zxvf '" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ports='sudo netstat -tulanp'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias clearall='clear && history -c && history -w'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 . /home/$SUDO_USER/.bashrc
 
-echo "===> Provisioning of this system is complete."
+echo "==> Provisioning of this system is complete."
 
 exit 0
