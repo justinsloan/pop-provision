@@ -53,6 +53,8 @@ sudo apt -y install zotero
 sudo apt -y install emacs
 sudo apt -y install remmina
 sudo apt -y install virtualbox 
+sudo apt -y install inetutils-traceroute
+sudo apt -y install traceroute
 sudo apt -y install transmission 
 sudo apt -y install keepassxc 
 sudo apt -y install torbrowser-launcher
