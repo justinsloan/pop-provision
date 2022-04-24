@@ -94,7 +94,7 @@ echo "alias clearall='clear && history -c && history -w'" >> /home/$SUDO_USER/.b
 echo "alias gitsync='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
-. /home/$SUDO_USER/.bashrc
+sudo -u $SUDO_USER . /home/$SUDO_USER/.bashrc
 
 echo "==> Provisioning of this system is complete."
 
