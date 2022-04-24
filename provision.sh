@@ -52,6 +52,7 @@ sudo apt -y install twine
 sudo apt -y install zotero 
 sudo apt -y install remmina
 sudo apt -y install virtualbox 
+sudo apt -y install virtualbox-ext-pack
 sudo apt -y install inetutils-traceroute
 sudo apt -y install traceroute
 sudo apt -y install transmission
@@ -94,7 +95,7 @@ echo "alias clearall='clear && history -c && history -w'" >> /home/$SUDO_USER/.b
 echo "alias gitsync='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
-. /home/$SUDO_USER/.bashrc
+source /home/$SUDO_USER/.bashrc
 
 echo "==> Provisioning of this system is complete."
 
