@@ -68,6 +68,11 @@ sudo apt -y install microsoft-edge-stable
 # Install Python Packages
 pip3 install quantumdiceware
 
+# Install Codium Extensions
+codium --install-extension sleistner.vscode-fileutils
+codium --install-extension streetsidesoftware.code-spell-checker
+codium --install-extension ms-python.python
+
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | sudo -u $SUDO_USER bash
