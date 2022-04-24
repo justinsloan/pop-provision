@@ -51,8 +51,6 @@ sudo apt -y install python3-pip
 sudo apt -y install twine 
 sudo apt -y install zotero 
 sudo apt -y install remmina
-sudo apt -y install virtualbox 
-sudo apt -y install virtualbox-ext-pack
 sudo apt -y install inetutils-traceroute
 sudo apt -y install traceroute
 sudo apt -y install transmission
@@ -77,10 +75,14 @@ sudo -u $SUDO_USER codium - --install-extension ms-python.python
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/provision/main/fonts.sh | sudo -u $SUDO_USER bash
+wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb -P ~/Downloads
+sudo apt -y install ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
+rm ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
 
 # Add user Home to PATH
 PATHA='export PATH=$PATH'
 PATHB="/home/$SUDO_USER/.local/bin"
+echo " " >> /home/$SUDO_USER/.bashrc
 echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 
 # Create some handy bash aliases
