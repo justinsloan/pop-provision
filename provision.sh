@@ -69,6 +69,7 @@ sudo apt -y install microsoft-edge-stable
 pip3 install quantumdiceware
 
 # Install Codium Extensions
+codium
 codium --install-extension sleistner.vscode-fileutils
 codium --install-extension streetsidesoftware.code-spell-checker
 codium --install-extension ms-python.python
