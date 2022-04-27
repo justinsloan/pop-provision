@@ -48,7 +48,6 @@ sudo apt -y purge firefox
 sudo apt -y purge chromium 
 sudo apt -y purge epiphany-browser 
 sudo apt -y purge evolution 
-sudo apt -y purge transmission-gtk
 
 # Install Additional Repositories
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
@@ -82,7 +81,7 @@ sudo apt -y install zotero
 sudo apt -y install remmina
 sudo apt -y install inetutils-traceroute
 sudo apt -y install traceroute
-sudo apt -y install transmission
+sudo apt -y install transmission-gtk
 sudo apt -y install keepassxc 
 sudo apt -y install torbrowser-launcher
 sudo apt -y install cmatrix 
