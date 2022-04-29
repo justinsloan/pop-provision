@@ -71,7 +71,7 @@ sudo apt -y install htop
 sudo apt -y install ncdu
 sudo apt -y install tmux 
 sudo apt -y install git 
-sudo apt -y install nmap 
+sudo apt -y install torbrowser-launcher
 sudo apt -y install foliate
 sudo apt -y install barrier 
 sudo apt -y install codium 
