@@ -71,7 +71,7 @@ sudo apt -y install htop
 sudo apt -y install ncdu
 sudo apt -y install tmux 
 sudo apt -y install git 
-sudo apt -y install torbrowser-launcher
+sudo apt -y install nmap
 sudo apt -y install foliate
 sudo apt -y install barrier 
 sudo apt -y install codium 
@@ -116,6 +116,7 @@ echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 # Create some handy bash aliases
 echo "alias myip='curl checkip.amazonaws.com'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias update='sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias whichupdates='sudo apt update && apt list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 15'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias storage='ncdu'" >> /home/$SUDO_USER/.bash_aliases
