@@ -53,7 +53,12 @@ sudo apt -y purge evolution
 curl https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor > vscodium.gpg
 sudo install -o root -g root -m 644 vscodium.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
-rm vscodium.gpg
+rm -f vscodium.gpg
+
+curl https://repo.vivaldi.com/archive/linux_signing_key.pub | gpg --dearmor > packages.vivaldi.gpg
+sudo install -o root -g root -m 644 packages.vivaldi.gpg /etc/apt/trusted.gpg.d
+sudo sh -c 'echo "deb [arch=amd64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.vivaldi.gpg] https://repo.vivaldi.com/archive/deb stable main" > /etc/apt/sources.list.d/vivaldi.list' 
+rm -f packages.vivaldi.gpg
 
 # Update the System
 sudo apt update 
@@ -82,6 +87,7 @@ sudo apt -y install curtail
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter
 sudo apt -y install gnome-tweaks 
+sudo apt -y install vivaldi
 
 # Install Python Packages
 pip3 install quantumdiceware
