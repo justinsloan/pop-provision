@@ -50,11 +50,6 @@ sudo apt -y purge epiphany-browser
 sudo apt -y purge evolution 
 
 # Install Additional Repositories
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
-rm microsoft.gpg
-
 curl https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor > vscodium.gpg
 sudo install -o root -g root -m 644 vscodium.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
@@ -73,15 +68,12 @@ sudo apt -y install tmux
 sudo apt -y install git 
 sudo apt -y install nmap
 sudo apt -y install foliate
-sudo apt -y install barrier 
 sudo apt -y install codium 
 sudo apt -y install python3-pip 
 sudo apt -y install twine 
-sudo apt -y install zotero 
 sudo apt -y install remmina
 sudo apt -y install inetutils-traceroute
 sudo apt -y install traceroute
-sudo apt -y install transmission-gtk
 sudo apt -y install keepassxc 
 sudo apt -y install torbrowser-launcher
 sudo apt -y install cmatrix 
@@ -90,7 +82,6 @@ sudo apt -y install curtail
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter
 sudo apt -y install gnome-tweaks 
-sudo apt -y install microsoft-edge-stable
 
 # Install Python Packages
 pip3 install quantumdiceware
