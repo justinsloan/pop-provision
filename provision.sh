@@ -87,7 +87,7 @@ sudo apt -y install curtail
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter
 sudo apt -y install gnome-tweaks 
-sudo apt -y install vivaldi
+sudo apt -y install vivaldi-stable
 
 # Install Python Packages
 pip3 install quantumdiceware
