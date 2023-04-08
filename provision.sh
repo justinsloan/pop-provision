@@ -60,6 +60,10 @@ sudo install -o root -g root -m 644 packages.vivaldi.gpg /etc/apt/trusted.gpg.d
 sudo sh -c 'echo "deb [arch=amd64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.vivaldi.gpg] https://repo.vivaldi.com/archive/deb stable main" > /etc/apt/sources.list.d/vivaldi.list' 
 rm -f packages.vivaldi.gpg
 
+echo 'deb http://download.opensuse.org/repositories/home:/jstaf/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:jstaf.list
+curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_jstaf.gpg > /dev/null
+
+
 # Update the System
 sudo apt update 
 sudo apt -y upgrade
@@ -88,6 +92,7 @@ sudo apt -y install imagemagick
 sudo apt -y install nautilus-image-converter
 sudo apt -y install gnome-tweaks 
 sudo apt -y install vivaldi-stable
+sudo apt -y install onedriver
 
 # Install Python Packages
 pip3 install quantumdiceware
