@@ -102,6 +102,7 @@ sudo apt -y install gnome-tweaks
 sudo apt -y install microsoft-edge-stable
 sudo apt -y install powershell
 sudo apt -y install onedriver
+sudo apt -y install heif-gdk-pixbuf
 
 # Install Python Packages
 pip3 install quantumdiceware
