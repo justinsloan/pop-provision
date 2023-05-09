@@ -46,7 +46,6 @@ fi
 # Purge/Remove Unneeded Default Packages
 sudo apt -y purge firefox 
 sudo apt -y purge chromium 
-sudo apt -y purge epiphany-browser 
 sudo apt -y purge evolution 
 
 # Install Additional Repositories
@@ -78,6 +77,7 @@ sudo apt -y autoremove
 
 # Install Packages
 sudo apt -y install gnupg 
+sudo apt -y install iperf3
 sudo apt -y install apt-transport-https
 sudo apt -y install cabextract
 sudo apt -y install htop 
