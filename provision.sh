@@ -107,6 +107,10 @@ sudo apt -y install heif-gdk-pixbuf
 sudo apt -y install gnome-sushi
 sudo apt -y install epiphany-browser
 
+# Install Vivaldi
+curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb
+sudo apt -y install vivaldi-stable_6.1.3035.84-1_amd64.deb
+
 # Install Python Packages
 pip3 install quantumdiceware
 pip3 install pyoath
