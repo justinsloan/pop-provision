@@ -106,10 +106,11 @@ sudo apt -y install onedriver
 sudo apt -y install heif-gdk-pixbuf
 sudo apt -y install gnome-sushi
 sudo apt -y install epiphany-browser
+sudo apt -y install flameshot
 
 # Install Vivaldi
 curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb
-sudo apt -y install vivaldi-stable_6.1.3035.84-1_amd64.deb
+sudo dpkg -i ./vivaldi-stable_6.1.3035.84-1_amd64.deb
 
 # Install Python Packages
 pip3 install quantumdiceware
