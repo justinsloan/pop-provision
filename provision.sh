@@ -115,6 +115,7 @@ sudo dpkg -i ./vivaldi-stable_6.1.3035.84-1_amd64.deb
 # Install Python Packages
 pip3 install quantumdiceware
 pip3 install pyoath
+pip3 install pyotp
 
 # Install Codium Extensions
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
