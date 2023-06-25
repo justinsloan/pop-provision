@@ -107,6 +107,7 @@ sudo apt -y install heif-gdk-pixbuf
 sudo apt -y install gnome-sushi
 sudo apt -y install epiphany-browser
 sudo apt -y install flameshot
+sudo apt -y install autokey-gtk
 
 # Install Vivaldi
 curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb
