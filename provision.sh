@@ -108,10 +108,17 @@ sudo apt -y install gnome-sushi
 sudo apt -y install epiphany-browser
 sudo apt -y install flameshot
 sudo apt -y install autokey-gtk
+sudp apt -y install glances
 
 # Install Vivaldi
-curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb
-sudo dpkg -i ./vivaldi-stable_6.1.3035.84-1_amd64.deb
+curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb --output vivaldi.deb
+sudo dpkg -i ./vivaldi.deb
+## Install Vivaldi dependencies
+sudo apt -f install
+
+# Install 1Password
+curl https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb --output 1password.deb
+sudo dpkg -i ./1password.deb
 
 # Install Python Packages
 pip3 install quantumdiceware
