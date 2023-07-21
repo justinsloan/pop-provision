@@ -78,6 +78,7 @@ sudo apt -y autoremove
 
 # Install Packages
 sudo apt -y install gnupg 
+sudo apt -y install gthumb
 sudo apt -y install iperf3
 sudo apt -y install apt-transport-https
 sudo apt -y install cabextract
