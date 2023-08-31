@@ -160,6 +160,7 @@ echo "alias clearall='clear && history -c && history -w'" >> /home/$SUDO_USER/.b
 echo "alias gs='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ..='cd ..'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ~='cd ~/'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias flush-dns='resolvectl flush-caches'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
