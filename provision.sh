@@ -113,6 +113,8 @@ sudo apt -y install flameshot
 sudo apt -y install autokey-gtk
 sudp apt -y install glances
 sudo apt -y install fzf
+sudo apt -y install virtualbox
+sudo apt -y install virtualbox-guest-additions-iso
 
 ## Install SSH server
 sudo apt -y install openssh-server
