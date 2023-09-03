@@ -67,6 +67,7 @@ sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium m
 rm -f vscodium.gpg
 
 ## OneDriver
+### Client for Microsoft OneDrive
 echo 'deb http://download.opensuse.org/repositories/home:/jstaf/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:jstaf.list
 curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_jstaf.gpg > /dev/null
 
@@ -111,6 +112,12 @@ sudo apt -y install epiphany-browser
 sudo apt -y install flameshot
 sudo apt -y install autokey-gtk
 sudp apt -y install glances
+sudo apt -y install fzf
+
+## Install SSH server
+sudo apt -y install openssh-server
+### SSH is enabled by default, so let's stop it
+sudo systemctl stop ssh
 
 # Install Vivaldi
 curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb --output vivaldi.deb
@@ -161,6 +168,7 @@ echo "alias gs='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ..='cd ..'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ~='cd ~/'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias flush-dns='resolvectl flush-caches'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
