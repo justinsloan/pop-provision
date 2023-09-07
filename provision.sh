@@ -47,6 +47,7 @@ fi
 sudo apt -y purge firefox 
 sudo apt -y purge chromium 
 sudo apt -y purge evolution 
+sudo apt -y purge epiphany-browser
 
 # Install Additional Repositories
 ## Microsoft Edge
@@ -71,6 +72,18 @@ rm -f vscodium.gpg
 echo 'deb http://download.opensuse.org/repositories/home:/jstaf/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:jstaf.list
 curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_jstaf.gpg > /dev/null
 
+## Librewolf
+sudo apt update && sudo apt install -y wget gnupg lsb-release apt-transport-https ca-certificates
+distro=$(if echo " una bookworm vanessa focal jammy bullseye vera uma " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi)
+wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
+sudo tee /etc/apt/sources.list.d/librewolf.sources << EOF > /dev/null
+Types: deb
+URIs: https://deb.librewolf.net
+Suites: $distro
+Components: main
+Architectures: amd64
+Signed-By: /usr/share/keyrings/librewolf.gpg
+EOF
 
 # Update the System
 sudo apt update 
@@ -78,6 +91,7 @@ sudo apt -y upgrade
 sudo apt -y autoremove
 
 # Install Packages
+sudo apt -y install librewolf
 sudo apt -y install gnupg 
 sudo apt -y install gthumb
 sudo apt -y install gdu
@@ -120,12 +134,6 @@ sudo apt -y install virtualbox-guest-additions-iso
 sudo apt -y install openssh-server
 ### SSH is enabled by default, so let's stop it
 sudo systemctl stop ssh
-
-# Install Vivaldi
-curl https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.84-1_amd64.deb --output vivaldi.deb
-sudo dpkg -i ./vivaldi.deb
-## Install Vivaldi dependencies
-sudo apt -f install
 
 # Install 1Password
 curl https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb --output 1password.deb
