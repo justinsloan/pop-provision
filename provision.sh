@@ -147,8 +147,12 @@ pip3 install pyotp
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
 sudo -u $SUDO_USER codium - --install-extension streetsidesoftware.code-spell-checker
 sudo -u $SUDO_USER codium - --install-extension ms-python.python
-sudo -u $SUDO_USER codium - --install-extension janisdd.vscode-edit-csv
+#sudo -u $SUDO_USER codium - --install-extension janisdd.vscode-edit-csv
 sudo -u $SUDO_USER codium - --install-extension ms-vscode.powershell
+sudo -u $SUDO_USER codium - --install-extension pajoma.vscode-journal
+sudo -u $SUDO_USER codium - --install-extension mads-hartmann.bash-ide-vscode
+sudo -u $SUDO_USER codium - --install-extension timonwong.shellcheck
+sudo -u $SUDO_USER codium - --install-extension GrapeCity.gc-excelviewer
 
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
