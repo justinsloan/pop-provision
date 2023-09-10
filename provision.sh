@@ -50,8 +50,7 @@ sudo apt -y purge evolution
 sudo apt -y purge epiphany-browser
 
 # Install Additional Repositories
-## Microsoft Edge
-### I am keeping this repository available just in case it is needed since I use Linux at work
+## Microsoft Edge (Yes, I actually like this browser)
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
@@ -117,7 +116,7 @@ sudo apt -y install curtail
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter
 sudo apt -y install gnome-tweaks 
-#sudo apt -y install microsoft-edge-stable
+sudo apt -y install microsoft-edge-stable
 sudo apt -y install powershell
 sudo apt -y install onedriver
 sudo apt -y install heif-gdk-pixbuf
