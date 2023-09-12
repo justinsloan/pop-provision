@@ -181,6 +181,7 @@ echo "alias gs='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ..='cd ..'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ~='cd ~/'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias flush-dns='resolvectl flush-caches'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias show-dns='resolvectl status | grep '\''DNS Server'\'' -A2'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
