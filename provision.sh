@@ -128,6 +128,7 @@ sudp apt -y install glances
 sudo apt -y install fzf
 sudo apt -y install virtualbox
 sudo apt -y install virtualbox-guest-additions-iso
+sudo apt -y install system76-keyboard-configurator
 
 ## Install SSH server
 sudo apt -y install openssh-server
@@ -142,6 +143,7 @@ sudo dpkg -i ./1password.deb
 pip3 install quantumdiceware
 pip3 install pyoath
 pip3 install pyotp
+pip3 install jrnl
 
 # Install Codium Extensions
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
