@@ -112,6 +112,10 @@ sudo apt -y install traceroute
 sudo apt -y install torbrowser-launcher
 sudo apt -y install cmatrix 
 sudo apt -y install neofetch
+sudo apt -y install figlet
+sudo apt -y install linuxlogo
+sudo apt -y install cowsay
+sudo apt -y install taskwarrior
 sudo apt -y install curtail 
 sudo apt -y install imagemagick 
 sudo apt -y install nautilus-image-converter
@@ -170,7 +174,7 @@ echo " " >> /home/$SUDO_USER/.bashrc
 echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 
 # Create some handy bash aliases
-echo "alias myip='curl checkip.amazonaws.com'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias myip='curl checkip.amazonaws.com | figlet'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias update='sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias whichupdates='sudo apt update && apt list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
@@ -183,8 +187,9 @@ echo "alias gs='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ..='cd ..'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias ~='cd ~/'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias flush-dns='resolvectl flush-caches'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias show-dns='resolvectl status | grep '\''DNS Server'\'' -A2'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias showdns='resolvectl status | grep '\''DNS Server'\'' -A2'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias showtime='date +%T | figlet'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
