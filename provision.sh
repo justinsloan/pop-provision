@@ -43,18 +43,12 @@ else
     sudo apt -y install curl
 fi
 
-# Purge/Remove Unneeded Default Packages
-sudo apt -y purge firefox 
-sudo apt -y purge chromium 
-sudo apt -y purge evolution 
-sudo apt -y purge epiphany-browser
-
 # Install Additional Repositories
-## Microsoft Edge (Yes, I actually like this browser)
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
-rm microsoft.gpg
+## Microsoft Edge (I keep this here because I use Edge for work))
+# curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+# sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+# sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list'
+# rm microsoft.gpg
 
 ## Microsoft Debian Bulls Eye
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -71,71 +65,70 @@ rm -f vscodium.gpg
 echo 'deb http://download.opensuse.org/repositories/home:/jstaf/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:jstaf.list
 curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_jstaf.gpg > /dev/null
 
-## Librewolf
-sudo apt update && sudo apt install -y wget gnupg lsb-release apt-transport-https ca-certificates
-distro=$(if echo " una bookworm vanessa focal jammy bullseye vera uma " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi)
-wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
-sudo tee /etc/apt/sources.list.d/librewolf.sources << EOF > /dev/null
-Types: deb
-URIs: https://deb.librewolf.net
-Suites: $distro
-Components: main
-Architectures: amd64
-Signed-By: /usr/share/keyrings/librewolf.gpg
-EOF
+## Brave Browser
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 # Update the System
 sudo apt update 
-sudo apt -y upgrade
-sudo apt -y autoremove
+
+# Install the Nala apt manager
+sudo apt install nala
+
+# Purge/Remove Unneeded Default Packages
+sudo nala -y purge firefox 
+sudo nala -y purge chromium 
+sudo nala -y purge evolution 
+sudo nala -y purge epiphany-browser
+
+# Install pending updates
+sudo nala -y upgrade
+sudo nala -y autoremove
 
 # Install Packages
-sudo apt -y install librewolf
-sudo apt -y install gnupg 
-sudo apt -y install gthumb
-sudo apt -y install gdu
-sudo apt -y install iperf3
-sudo apt -y install apt-transport-https
-sudo apt -y install cabextract
-sudo apt -y install htop 
-sudo apt -y install ncdu
-sudo apt -y install tmux 
-sudo apt -y install git 
-sudo apt -y install nmap
-sudo apt -y install foliate
-sudo apt -y install codium 
-sudo apt -y install python3-pip 
-sudo apt -y install twine 
-sudo apt -y install remmina
-sudo apt -y install inetutils-traceroute
-sudo apt -y install traceroute
-sudo apt -y install torbrowser-launcher
-sudo apt -y install cmatrix 
-sudo apt -y install neofetch
-sudo apt -y install figlet
-sudo apt -y install linuxlogo
-sudo apt -y install cowsay
-sudo apt -y install taskwarrior
-sudo apt -y install curtail 
-sudo apt -y install imagemagick 
-sudo apt -y install nautilus-image-converter
-sudo apt -y install gnome-tweaks 
-sudo apt -y install microsoft-edge-stable
-sudo apt -y install powershell
-sudo apt -y install onedriver
-sudo apt -y install heif-gdk-pixbuf
-sudo apt -y install gnome-sushi
-sudo apt -y install epiphany-browser
-sudo apt -y install flameshot
-sudo apt -y install autokey-gtk
-sudp apt -y install glances
-sudo apt -y install fzf
-sudo apt -y install virtualbox
-sudo apt -y install virtualbox-guest-additions-iso
-sudo apt -y install system76-keyboard-configurator
+sudo nala -y install brave-browser
+sudo nala -y install gnupg 
+sudo nala -y install gthumb
+sudo nala -y install gdu
+sudo nala -y install iperf3
+sudo nala -y install apt-transport-https
+sudo nala -y install cabextract
+sudo nala -y install htop 
+sudo nala -y install ncdu
+sudo nala -y install tmux 
+sudo nala -y install git 
+sudo nala -y install nmap
+sudo nala -y install foliate
+sudo nala -y install codium 
+sudo nala -y install python3-pip 
+sudo nala -y install twine 
+sudo nala -y install remmina
+sudo nala -y install inetutils-traceroute
+sudo nala -y install traceroute
+sudo nala -y install cmatrix 
+sudo nala -y install neofetch
+sudo nala -y install figlet
+sudo nala -y install linuxlogo
+sudo nala -y install cowsay
+sudo nala -y install taskwarrior
+sudo nala -y install curtail 
+sudo nala -y install imagemagick 
+sudo nala -y install nautilus-image-converter
+sudo nala -y install gnome-tweaks 
+sudo nala -y install powershell
+sudo nala -y install onedriver
+sudo nala -y install heif-gdk-pixbuf
+sudo nala -y install gnome-sushi
+sudo nala -y install flameshot
+sudo nala -y install autokey-gtk
+sudp nala -y install glances
+sudo nala -y install fzf
+sudo nala -y install virtualbox
+sudo nala -y install virtualbox-guest-additions-iso
+sudo nala -y install system76-keyboard-configurator
 
 ## Install SSH server
-sudo apt -y install openssh-server
+sudo nala -y install openssh-server
 ### SSH is enabled by default, so let's stop it
 sudo systemctl stop ssh
 
@@ -164,7 +157,7 @@ sudo -u $SUDO_USER codium - --install-extension GrapeCity.gc-excelviewer
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/fonts.sh | sudo -u $SUDO_USER bash
 wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb -P ~/Downloads
-sudo apt -y install ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
+sudo nala -y install ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
 rm ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
 
 # Add user Home to PATH
@@ -175,8 +168,8 @@ echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 
 # Create some handy bash aliases
 echo "alias myip='curl checkip.amazonaws.com | figlet'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias update='sudo apt update && sudo apt -y upgrade && sudo apt -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias whichupdates='sudo apt update && apt list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias update='sudo nala update && sudo nala -y upgrade && sudo nala -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias whichupdates='sudo nala update && nala list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 15'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias storage='ncdu'" >> /home/$SUDO_USER/.bash_aliases
