@@ -73,62 +73,62 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] http
 sudo apt update 
 
 # Install the Nala apt manager
-sudo apt install nala
+sudo apt install -y nala
 
 # Purge/Remove Unneeded Default Packages
-sudo nala -y purge firefox 
-sudo nala -y purge chromium 
-sudo nala -y purge evolution 
-sudo nala -y purge epiphany-browser
+sudo nala purge -y firefox 
+sudo nala purge -y chromium 
+sudo nala purge -y evolution 
+sudo nala purge -y epiphany-browser
 
 # Install pending updates
-sudo nala -y upgrade
-sudo nala -y autoremove
+sudo nala upgrade -y
+sudo nala autoremove -y
 
-# Install Packages
-sudo nala -y install brave-browser
-sudo nala -y install gnupg 
-sudo nala -y install gthumb
-sudo nala -y install gdu
-sudo nala -y install iperf3
-sudo nala -y install apt-transport-https
-sudo nala -y install cabextract
-sudo nala -y install htop 
-sudo nala -y install ncdu
-sudo nala -y install tmux 
-sudo nala -y install git 
-sudo nala -y install nmap
-sudo nala -y install foliate
-sudo nala -y install codium 
-sudo nala -y install python3-pip 
-sudo nala -y install twine 
-sudo nala -y install remmina
-sudo nala -y install inetutils-traceroute
-sudo nala -y install traceroute
-sudo nala -y install cmatrix 
-sudo nala -y install neofetch
-sudo nala -y install figlet
-sudo nala -y install linuxlogo
-sudo nala -y install cowsay
-sudo nala -y install taskwarrior
-sudo nala -y install curtail 
-sudo nala -y install imagemagick 
-sudo nala -y install nautilus-image-converter
-sudo nala -y install gnome-tweaks 
-sudo nala -y install powershell
-sudo nala -y install onedriver
-sudo nala -y install heif-gdk-pixbuf
-sudo nala -y install gnome-sushi
-sudo nala -y install flameshot
-sudo nala -y install autokey-gtk
-sudp nala -y install glances
-sudo nala -y install fzf
-sudo nala -y install virtualbox
-sudo nala -y install virtualbox-guest-additions-iso
-sudo nala -y install system76-keyboard-configurator
+# Install pakages
+sudo nala install -y brave-browser
+sudo nala install -y gnupg 
+sudo nala install -y gthumb
+sudo nala install -y gdu
+sudo nala install -y iperf3
+sudo nala install -y apt-transport-https
+sudo nala install -y cabextract
+sudo nala install -y htop 
+sudo nala install -y ncdu
+sudo nala install -y tmux 
+sudo nala install -y git 
+sudo nala install -y nmap
+sudo nala install -y foliate
+sudo nala install -y codium 
+sudo nala install -y python3-pip 
+sudo nala install -y twine 
+sudo nala install -y remmina
+sudo nala install -y inetutils-traceroute
+sudo nala install -y traceroute
+sudo nala install -y cmatrix 
+sudo nala install -y neofetch
+sudo nala install -y figlet
+sudo nala install -y linuxlogo
+sudo nala install -y cowsay
+sudo nala install -y taskwarrior
+sudo nala install -y curtail 
+sudo nala install -y imagemagick 
+sudo nala install -y nautilus-image-converter
+sudo nala install -y gnome-tweaks 
+sudo nala install -y powershell
+sudo nala install -y onedriver
+sudo nala install -y heif-gdk-pixbuf
+sudo nala install -y gnome-sushi
+sudo nala install -y flameshot
+sudo nala install -y autokey-gtk
+sudp nala install -y glances
+sudo nala install -y fzf
+sudo nala install -y virtualbox
+sudo nala install -y virtualbox-guest-additions-iso
+sudo nala install -y system76-keyboard-configurator
 
 ## Install SSH server
-sudo nala -y install openssh-server
+sudo nala install -y openssh-server
 ### SSH is enabled by default, so let's stop it
 sudo systemctl stop ssh
 
@@ -140,7 +140,6 @@ sudo dpkg -i ./1password.deb
 pip3 install quantumdiceware
 pip3 install pyoath
 pip3 install pyotp
-pip3 install jrnl
 
 # Install Codium Extensions
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
@@ -168,7 +167,7 @@ echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 
 # Create some handy bash aliases
 echo "alias myip='curl checkip.amazonaws.com | figlet'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias update='sudo nala update && sudo nala -y upgrade && sudo nala -y autoremove'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias whichupdates='sudo nala update && nala list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 15'" >> /home/$SUDO_USER/.bash_aliases
