@@ -155,9 +155,9 @@ sudo -u $SUDO_USER codium - --install-extension GrapeCity.gc-excelviewer
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/fonts.sh | sudo -u $SUDO_USER bash
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb -P ~/Downloads
-sudo nala -y install ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
-rm ~/Downloads/ttf-mscorefonts-installer_3.6_all.deb
+wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.8.1_all.deb -P ~/Downloads
+sudo nala -y install ~/Downloads/ttf-mscorefonts-installer_3.8.1_all.deb
+rm ~/Downloads/ttf-mscorefonts-installer_3.8.1_all.deb
 
 # Add user Home to PATH
 PATHA='export PATH=$PATH'
