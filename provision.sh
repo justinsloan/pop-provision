@@ -137,9 +137,18 @@ curl https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.
 sudo dpkg -i ./1password.deb
 
 # Install Python Packages
-pip3 install quantumdiceware
-pip3 install pyoath
-pip3 install pyotp
+sudo -u $SUDO_USER pip3 install quantumdiceware
+sudo -u $SUDO_USER pip3 install pyoath
+sudo -u $SUDO_USER pip3 install pyotp
+
+# Make `xdg-open` open up directories in nemo instead of nautilus
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+# Make Gnome-controlled directories and **icons on the desktop** open up in nemo
+# now instead of in nautilus
+gsettings set org.gnome.shell.extensions.ding use-nemo true
+
+# Install a configuration tool we will use below
+sudo apt install dconf-editor 
 
 # Install Codium Extensions
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
