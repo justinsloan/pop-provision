@@ -69,23 +69,23 @@ curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/R
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
-# Update the System
+# Fetch updates
 sudo apt update 
+
+# Purge/Remove Unneeded Default Packages
+sudo apt purge -y firefox 
+sudo apt purge -y chromium 
+sudo apt purge -y evolution 
+sudo apt purge -y epiphany-browser
 
 # Install the Nala apt manager
 sudo apt install -y nala
-
-# Purge/Remove Unneeded Default Packages
-sudo nala purge -y firefox 
-sudo nala purge -y chromium 
-sudo nala purge -y evolution 
-sudo nala purge -y epiphany-browser
 
 # Install pending updates
 sudo nala upgrade -y
 sudo nala autoremove -y
 
-# Install pakages
+# Install base pakages
 sudo nala install -y brave-browser
 sudo nala install -y gnupg 
 sudo nala install -y gthumb
@@ -96,7 +96,6 @@ sudo nala install -y cabextract
 sudo nala install -y htop 
 sudo nala install -y ncdu
 sudo nala install -y tmux 
-sudo nala install -y git 
 sudo nala install -y nmap
 sudo nala install -y foliate
 sudo nala install -y codium 
@@ -132,9 +131,14 @@ sudo nala install -y openssh-server
 ### SSH is enabled by default, so let's stop it
 sudo systemctl stop ssh
 
+# Install Git and set options
+sudo nala install -y git 
+git config --global user.name  $SUDO_USER
+git config --global user.email "my@private.email"
+
 # Install 1Password
-curl https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb --output 1password.deb
-sudo dpkg -i ./1password.deb
+#curl https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb --output 1password.deb
+#sudo dpkg -i ./1password.deb
 
 # Install Python Packages
 sudo -u $SUDO_USER pip3 install quantumdiceware
@@ -175,7 +179,10 @@ echo " " >> /home/$SUDO_USER/.bashrc
 echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 
 # Create some handy bash aliases
-echo "alias myip='curl checkip.amazonaws.com | figlet'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias myip='curl --silent checkip.amazonaws.com | figlet'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias mycity='curl --silent ipinfo.io/city | figlet'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias myregion='curl --silent ipinfo.io/region | figlet'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias myisp='curl --silent ipinfo.io/org'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias whichupdates='sudo nala update && nala list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
