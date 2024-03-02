@@ -122,6 +122,7 @@ sudo nala install -y flameshot
 sudo nala install -y autokey-gtk
 sudo nala install -y glances
 sudo nala install -y fzf
+sudo nala install -y heif-gdk-pixbuf
 sudo nala install -y virtualbox
 sudo nala install -y virtualbox-guest-additions-iso
 sudo nala install -y system76-keyboard-configurator
