@@ -69,6 +69,11 @@ curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/R
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
+## Tailscale
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+
+
 # Fetch updates
 sudo apt update 
 
@@ -87,6 +92,7 @@ sudo nala autoremove -y
 
 # Install base pakages
 sudo nala install -y brave-browser
+sudo nala install -y tailscale
 sudo nala install -y gnupg 
 sudo nala install -y gthumb
 sudo nala install -y gdu
