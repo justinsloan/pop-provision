@@ -132,6 +132,7 @@ sudo nala install -y heif-gdk-pixbuf
 sudo nala install -y virtualbox
 sudo nala install -y virtualbox-guest-additions-iso
 sudo nala install -y system76-keyboard-configurator
+sudo nala install -y powertop
 
 ## Install SSH server
 sudo nala install -y openssh-server
