@@ -93,6 +93,7 @@ sudo nala autoremove -y
 # Install base pakages
 sudo nala install -y brave-browser
 sudo nala install -y tailscale
+sudo nala install -y virt-manager
 sudo nala install -y gnupg 
 sudo nala install -y gthumb
 sudo nala install -y gdu
@@ -122,6 +123,7 @@ sudo nala install -y nautilus-image-converter
 sudo nala install -y gnome-tweaks 
 sudo nala install -y powershell
 sudo nala install -y onedriver
+sudo nala install -y sshpass
 sudo nala install -y heif-gdk-pixbuf
 sudo nala install -y gnome-sushi
 sudo nala install -y flameshot
@@ -129,8 +131,11 @@ sudo nala install -y autokey-gtk
 sudo nala install -y glances
 sudo nala install -y fzf
 sudo nala install -y heif-gdk-pixbuf
-sudo nala install -y virtualbox
-sudo nala install -y virtualbox-guest-additions-iso
+#sudo nala install -y virtualbox
+s#udo nala install -y virtualbox-guest-additions-iso
+sudo nala install -y qemu
+sudo nala install -y libu2f-udev
+sudo nala install -y libpam-u2f
 sudo nala install -y system76-keyboard-configurator
 sudo nala install -y powertop
 
@@ -144,20 +149,10 @@ sudo nala install -y git
 git config --global user.name  $SUDO_USER
 git config --global user.email "my@private.email"
 
-# Install 1Password
-#curl https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb --output 1password.deb
-#sudo dpkg -i ./1password.deb
-
 # Install Python Packages
 sudo -u $SUDO_USER pip3 install quantumdiceware
 sudo -u $SUDO_USER pip3 install pyoath
 sudo -u $SUDO_USER pip3 install pyotp
-
-# Make `xdg-open` open up directories in nemo instead of nautilus
-xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-# Make Gnome-controlled directories and **icons on the desktop** open up in nemo
-# now instead of in nautilus
-gsettings set org.gnome.shell.extensions.ding use-nemo true
 
 # Install a configuration tool we will use below
 sudo apt install dconf-editor 
@@ -166,7 +161,7 @@ sudo apt install dconf-editor
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
 sudo -u $SUDO_USER codium - --install-extension streetsidesoftware.code-spell-checker
 sudo -u $SUDO_USER codium - --install-extension ms-python.python
-#sudo -u $SUDO_USER codium - --install-extension janisdd.vscode-edit-csv
+sudo -u $SUDO_USER codium - --install-extension janisdd.vscode-edit-csv
 sudo -u $SUDO_USER codium - --install-extension ms-vscode.powershell
 sudo -u $SUDO_USER codium - --install-extension pajoma.vscode-journal
 sudo -u $SUDO_USER codium - --install-extension mads-hartmann.bash-ide-vscode
@@ -206,9 +201,30 @@ echo "alias flush-dns='resolvectl flush-caches'" >> /home/$SUDO_USER/.bash_alias
 echo "alias showdns='resolvectl status | grep '\''DNS Server'\'' -A2'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias showtime='date +%T | figlet'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias history='history | fzf'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
+clear
+
+# Setup Yubikey authentication
+sudo -u $SUDO_USER mkdir -p ~/.config/Yubico
+read -p "Insert your primary Yubikey, then press any key to continue."
+pamu2fcfg > ~/.config/Yubico/u2f_keys
+echo "Touch the contact on your primary Yubikey."
+read -p "Remove your primary Yubikey,  insert your backup key, then press any key to continue."
+echo "Touch the contact on your backup Yubikey."
+pamu2fcfg -n >> ~/.config/Yubico/u2f_keys
+sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/sudo
+sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/gdm-password
+sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/lightdm
+sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/login
+sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/su
+sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/sudo-i
+
+sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/fonts.sh | sudo -u $SUDO_USER bash
+
+clear
 
 echo "==> Provisioning of this system is complete."
 
