@@ -207,22 +207,12 @@ echo "alias history='history | fzf'" >> /home/$SUDO_USER/.bash_aliases
 source /home/$SUDO_USER/.bashrc
 clear
 
-# Setup Yubikey authentication
-sudo -u $SUDO_USER mkdir -p ~/.config/Yubico
-read -p "Insert your primary Yubikey, then press any key to continue."
-pamu2fcfg > ~/.config/Yubico/u2f_keys
-echo "Touch the contact on your primary Yubikey."
-read -p "Remove your primary Yubikey,  insert your backup key, then press any key to continue."
-echo "Touch the contact on your backup Yubikey."
-pamu2fcfg -n >> ~/.config/Yubico/u2f_keys
-sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/sudo
-sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/gdm-password
-sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/lightdm
-sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/login
-sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/su
-sudo sed '/@include common-auth/auth       required   pam_u2f.so' /etc/pam.d/sudo-i
-
+# Install Microsoft fonts
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/fonts.sh | sudo -u $SUDO_USER bash
+clear
+
+# Setup Yubikey authentication
+sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/yubikey.sh | sudo -u $SUDO_USER bash
 
 clear
 
