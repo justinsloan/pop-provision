@@ -72,6 +72,8 @@ sudo sed -i '/@include common-auth/aauth       required   pam_u2f.so' /etc/pam.d
 sudo sed -i '/@include common-auth/aauth       required   pam_u2f.so' /etc/pam.d/sudo-i
 
 echo "Validating authorization requirements..."
+#if [ 'cat /etc/pam.d/login | grep "auth       required   pam_u2f.so"' ]; then echo "not done"; fi
+
 cat /etc/pam.d/sudo | if ! grep -q pam_u2f.so; then echo -e "sudo ${RED}failed${ENDCOLOR}"; else echo "sudo ${GREEN}passed${ENDCOLOR}"; fi
 cat /etc/pam.d/gdm-password | if ! grep -q pam_u2f.so; then echo -e "gdm-password ${RED}failed${ENDCOLOR}"; else echo "gdm-password ${GREEN}passed${ENDCOLOR}"; fi
 cat /etc/pam.d/login | if ! grep -q pam_u2f.so; then echo -e "login ${RED}failed${ENDCOLOR}"; else echo "login ${GREEN}passed${ENDCOLOR}"; fi
