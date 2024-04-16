@@ -28,6 +28,9 @@
 # | OTHER DEALINGS IN THE SOFTWARE.                                        |
 # +------------------------------------------------------------------------+
 
+# TODO: turn the long lists into loops based on a text file
+# TODO: allow the user to specify which text file to use
+
 $HOSTNAME=$(uname -n)
 
 # Superuser permission required.
