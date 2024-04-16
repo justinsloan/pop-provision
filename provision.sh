@@ -28,13 +28,15 @@
 # | OTHER DEALINGS IN THE SOFTWARE.                                        |
 # +------------------------------------------------------------------------+
 
+$HOSTNAME=$(uname -n)
+
 # Superuser permission required.
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
-  exit
+  exit 0
 fi
 
-echo "==> Starting provisioning."
+echo "==> Starting provisioning for $HOSTNAME."
 
 # Check for curl
 if exists curl; then 
@@ -70,9 +72,8 @@ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://b
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 ## Tailscale
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg > /dev/null
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
-
 
 # Fetch updates
 sudo apt update 
@@ -86,6 +87,11 @@ sudo apt purge -y epiphany-browser
 # Install the Nala apt manager
 sudo apt install -y nala
 
+clear
+
+# Fetch the fastest mirror repo
+sudo nala fetch
+
 # Install pending updates
 sudo nala upgrade -y
 sudo nala autoremove -y
@@ -94,6 +100,7 @@ sudo nala autoremove -y
 sudo nala install -y brave-browser
 sudo nala install -y tailscale
 sudo nala install -y virt-manager
+sudo nala install -y qemu
 sudo nala install -y gnupg 
 sudo nala install -y gthumb
 sudo nala install -y gdu
@@ -132,10 +139,7 @@ sudo nala install -y glances
 sudo nala install -y fzf
 sudo nala install -y heif-gdk-pixbuf
 #sudo nala install -y virtualbox
-s#udo nala install -y virtualbox-guest-additions-iso
-sudo nala install -y qemu
-sudo nala install -y libu2f-udev
-sudo nala install -y libpam-u2f
+#sudo nala install -y virtualbox-guest-additions-iso
 sudo nala install -y system76-keyboard-configurator
 sudo nala install -y powertop
 
@@ -155,7 +159,7 @@ sudo -u $SUDO_USER pip3 install pyoath
 sudo -u $SUDO_USER pip3 install pyotp
 
 # Install a configuration tool we will use below
-sudo apt install dconf-editor 
+sudo nala install -y dconf-editor 
 
 # Install Codium Extensions
 sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
@@ -216,6 +220,6 @@ sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provis
 
 clear
 
-echo "==> Provisioning of this system is complete."
+echo "==> Provisioning of $HOSTNAME is complete."
 
 exit 0
