@@ -102,8 +102,9 @@ sudo nala autoremove -y
 # Install base pakages
 sudo nala install -y brave-browser
 sudo nala install -y tailscale
-sudo nala install -y virt-manager
-sudo nala install -y qemu
+sudo nala install -y bind9-dnsutils
+#sudo nala install -y virt-manager
+#sudo nala install -y qemu
 sudo nala install -y gnupg 
 sudo nala install -y gthumb
 sudo nala install -y gdu
@@ -141,12 +142,13 @@ sudo nala install -y autokey-gtk
 sudo nala install -y glances
 sudo nala install -y fzf
 sudo nala install -y heif-gdk-pixbuf
-#sudo nala install -y virtualbox
-#sudo nala install -y virtualbox-guest-additions-iso
+sudo nala install -y virtualbox
+sudo nala install -y virtualbox-guest-additions-iso
 sudo nala install -y system76-keyboard-configurator
 sudo nala install -y powertop
 sudo nala install -y empathy
 sudo nala install -y telepathy-rakia
+sudo nala install -y clamav
 
 ## Install SSH server
 sudo nala install -y openssh-server
