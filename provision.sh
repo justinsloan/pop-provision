@@ -213,6 +213,7 @@ echo "alias showdns='resolvectl status | grep '\''DNS Server'\'' -A2'" >> /home/
 echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias showtime='date +%T | figlet'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias history='history | fzf'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'"
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
