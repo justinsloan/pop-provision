@@ -149,6 +149,7 @@ sudo nala install -y powertop
 sudo nala install -y empathy
 sudo nala install -y telepathy-rakia
 sudo nala install -y clamav
+sudo nala install -y newsboat
 
 ## Install SSH server
 sudo nala install -y openssh-server
