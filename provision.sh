@@ -150,6 +150,8 @@ sudo nala install -y empathy
 sudo nala install -y telepathy-rakia
 sudo nala install -y clamav
 sudo nala install -y newsboat
+sudo nala install -y dict
+sudo nala install -y xfce4-dict
 
 ## Install SSH server
 sudo nala install -y openssh-server
@@ -215,6 +217,7 @@ echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias showtime='date +%T | figlet'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias history='history | fzf'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias dict='dict -d wn'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
