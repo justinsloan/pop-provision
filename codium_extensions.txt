@@ -7,4 +7,3 @@ pajoma.vscode-journal
 mads-hartmann.bash-ide-vscode
 timonwong.shellcheck
 GrapeCity.gc-excelviewer
-GitHub.copilot-1.180.827.vsix
