@@ -39,14 +39,67 @@ if [ "$EUID" -ne 0 ]
   exit 0
 fi
 
+# +------------------------------------------------------------------------+
+# FUNCTIONS
+# +------------------------------------------------------------------------+
+installPackage() {
+    if ! dpkg -l | grep -q $1; then
+        sudo nala install -y $1
+        clear
+    else
+        echo "$1 already installed"
+    fi
+}
+
+purgePackage() {
+    if dpkg -l | grep -q $1; then
+        sudo apt purge -y $1
+        clear
+    else
+        echo "$1 not installed"
+    fi
+}
+
+installPythonPackage() {
+    sudo -u $SUDO_USER pip3 install $1
+    clear
+}
+
+installCodiumExtension() {
+    sudo -u $SUDO_USER codium - --install-extension $1
+    clear
+}
+
+
+# +------------------------------------------------------------------------+
+
 echo "==> Starting provisioning for $HOSTNAME."
 
-# Check for curl
-if exists curl; then 
-    echo "==> curl already installed"
-else
-    sudo apt -y install curl
+# Check for purge and install lists
+if [ ! -f purge_packages.txt ]; then
+    curl -o purge_packages.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/purge_packages.txt
 fi
+
+if [ ! -f install_packages.txt ]; then
+    curl -o install_packages.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/install_packages.txt
+fi
+
+if [ ! -f python_packages.txt ]; then
+    curl -o python_packages.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/python_packages.txt
+fi
+
+if [ ! -f codium_extensions.txt ]; then
+    curl -o codium_extensions.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/codium_extensions.txt
+fi
+
+# Install dependencies
+sudo apt update
+sudo apt install -y curl nala dconf-editor
+
+clear
+
+# Fetch the fastest mirror repo
+sudo nala fetch
 
 # Install Additional Repositories
 ## Microsoft Edge (I keep this here because I use Edge for work))
@@ -82,105 +135,46 @@ curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.tailscale-keyring.list
 sudo apt update 
 
 # Purge/Remove Unneeded Default Packages
-sudo apt purge -y firefox 
-sudo apt purge -y chromium 
-sudo apt purge -y evolution 
-sudo apt purge -y epiphany-browser
+# for each line in the text file, purge the package
+while IFS= read -r line
+do
+    purgePackage $line
+done < purge_packages.txt
 
-# Install the Nala apt manager
-sudo apt install -y nala
-
-clear
-
-# Fetch the fastest mirror repo
-sudo nala fetch
-
-# Install pending updates
+# Install pending updates & clean up
 sudo nala upgrade -y
 sudo nala autoremove -y
 
 # Install base pakages
-sudo nala install -y brave-browser
-sudo nala install -y tailscale
-sudo nala install -y bind9-dnsutils
-#sudo nala install -y virt-manager
-#sudo nala install -y qemu
-sudo nala install -y gnupg 
-sudo nala install -y gthumb
-sudo nala install -y gdu
-sudo nala install -y iperf3
-sudo nala install -y apt-transport-https
-sudo nala install -y cabextract
-sudo nala install -y htop 
-sudo nala install -y ncdu
-sudo nala install -y tmux 
-sudo nala install -y nmap
-sudo nala install -y foliate
-sudo nala install -y codium 
-sudo nala install -y python3-pip 
-sudo nala install -y twine 
-sudo nala install -y remmina
-sudo nala install -y inetutils-traceroute
-sudo nala install -y traceroute
-sudo nala install -y cmatrix 
-sudo nala install -y neofetch
-sudo nala install -y figlet
-sudo nala install -y linuxlogo
-sudo nala install -y cowsay
-sudo nala install -y taskwarrior
-sudo nala install -y curtail 
-sudo nala install -y imagemagick 
-sudo nala install -y nautilus-image-converter
-sudo nala install -y gnome-tweaks 
-sudo nala install -y powershell
-sudo nala install -y onedriver
-sudo nala install -y sshpass
-sudo nala install -y heif-gdk-pixbuf
-sudo nala install -y gnome-sushi
-sudo nala install -y flameshot
-sudo nala install -y autokey-gtk
-sudo nala install -y glances
-sudo nala install -y fzf
-sudo nala install -y heif-gdk-pixbuf
-sudo nala install -y virtualbox
-sudo nala install -y virtualbox-guest-additions-iso
-sudo nala install -y system76-keyboard-configurator
-sudo nala install -y powertop
-sudo nala install -y empathy
-sudo nala install -y telepathy-rakia
-sudo nala install -y clamav
-sudo nala install -y newsboat
-sudo nala install -y dict
-sudo nala install -y xfce4-dict
+# for each line in the text file, install the package
+while IFS= read -r line
+do
+    installPackage $line
+done < install_packages.txt
 
 ## Install SSH server
-sudo nala install -y openssh-server
+installPackage "openssh-server"
 ### SSH is enabled by default, so let's stop it
 sudo systemctl stop ssh
 
 # Install Git and set options
-sudo nala install -y git 
+installPackage "git" 
 git config --global user.name  $SUDO_USER
 git config --global user.email "my@private.email"
 
-# Install Python Packages
-sudo -u $SUDO_USER pip3 install quantumdiceware
-sudo -u $SUDO_USER pip3 install pyoath
-sudo -u $SUDO_USER pip3 install pyotp
+# Install Python pakages
+# for each line in the text file, install the package
+while IFS= read -r line
+do
+    installPythonPackage $line
+done < python_packages.txt
 
-# Install a configuration tool we will use below
-sudo nala install -y dconf-editor 
-
-# Install Codium Extensions
-sudo -u $SUDO_USER codium - --install-extension sleistner.vscode-fileutils
-sudo -u $SUDO_USER codium - --install-extension streetsidesoftware.code-spell-checker
-sudo -u $SUDO_USER codium - --install-extension ms-python.python
-sudo -u $SUDO_USER codium - --install-extension janisdd.vscode-edit-csv
-sudo -u $SUDO_USER codium - --install-extension ms-vscode.powershell
-sudo -u $SUDO_USER codium - --install-extension pajoma.vscode-journal
-sudo -u $SUDO_USER codium - --install-extension mads-hartmann.bash-ide-vscode
-sudo -u $SUDO_USER codium - --install-extension timonwong.shellcheck
-sudo -u $SUDO_USER codium - --install-extension GrapeCity.gc-excelviewer
+# Install Codium extensions
+# for each line in the text file, install the package
+while IFS= read -r line
+do
+    installCodiumExtension $line
+done < codium_extensions.txt
 
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
@@ -221,10 +215,6 @@ echo "alias dict='dict -d wn'" >> /home/$SUDO_USER/.bash_aliases
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
-clear
-
-# Install Microsoft fonts
-sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/fonts.sh | sudo -u $SUDO_USER bash
 clear
 
 # Setup Yubikey authentication
