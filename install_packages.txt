@@ -48,3 +48,5 @@ newsboat
 dict
 xfce4-dict
 rclone
+docker.io
+docker-compose
