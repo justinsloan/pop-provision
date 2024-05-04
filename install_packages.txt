@@ -48,5 +48,6 @@ newsboat
 dict
 xfce4-dict
 rclone
+barrier
 docker.io
 docker-compose
