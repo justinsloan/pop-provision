@@ -22,3 +22,4 @@ echo "alias showtime='date +%T | figlet'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias history='history | fzf'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> /home/$SUDO_USER/.bash_aliases
 echo "alias dict='dict -d wn'" >> /home/$SUDO_USER/.bash_aliases
+echo "alias gpumon='amd-smi monitor -g 0 -p -u -t'" >> /home/$SUDO_USER/.bash_aliases
