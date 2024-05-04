@@ -75,7 +75,8 @@ installCodiumExtension() {
 
 echo "==> Starting provisioning for $HOSTNAME."
 
-# Check for purge and install lists
+# Check for local purge and install lists, if not found pull 
+# standard lists from repository
 if [ ! -f purge_packages.txt ]; then
     curl -o purge_packages.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/purge_packages.txt
 fi
@@ -219,6 +220,12 @@ clear
 
 # Setup Yubikey authentication
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/yubikey.sh | sudo -u $SUDO_USER bash
+
+# Create a certificate for Barrier
+openssl req -x509 -nodes -days 365 -subj /CN=Barrier \ 
+    -newkey rsa:2048 \
+    -keyout /home/$SUDO_USER/.local/share/barrier/SSL/Barrier.pem \
+    -out /home/$SUDO_USER/.local/share/barrier/SSL/Barrier.pem
 
 clear
 
