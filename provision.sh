@@ -75,7 +75,7 @@ installCodiumExtension() {
 
 echo "==> Starting provisioning for $HOSTNAME."
 
-# Check for local purge and install lists, if not found pull 
+# Check for local purge, install and alias lists, if not found pull 
 # standard lists from repository
 if [ ! -f purge_packages.txt ]; then
     curl -o purge_packages.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/purge_packages.txt
@@ -91,6 +91,10 @@ fi
 
 if [ ! -f codium_extensions.txt ]; then
     curl -o codium_extensions.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/codium_extensions.txt
+fi
+
+if [ ! -f aliases.sh ]; then
+    curl -o codium_extensions.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/aliases.sh
 fi
 
 # Install dependencies
@@ -191,28 +195,8 @@ echo " " >> /home/$SUDO_USER/.bashrc
 echo "$PATHA:$PATHB" >> /home/$SUDO_USER/.bashrc
 
 # Create some handy bash aliases
-echo "alias myip='curl --silent checkip.amazonaws.com | figlet'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias mycity='curl --silent ipinfo.io/city | figlet'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias myregion='curl --silent ipinfo.io/region | figlet'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias myisp='curl --silent ipinfo.io/org'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias whichupdates='sudo nala update && nala list --upgradeable'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias calc='bc -l'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias size='pwd && find ./ -type f -exec du -Sh {} + | sort -rh | head -n 15'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias storage='ncdu'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias untar='tar -zxvf '" >> /home/$SUDO_USER/.bash_aliases
-echo "alias ports='sudo netstat -tulanp'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias clearall='clear && history -c && history -w'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias gs='git pull && git push'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias ..='cd ..'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias ~='cd ~/'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias flush-dns='resolvectl flush-caches'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias showdns='resolvectl status | grep '\''DNS Server'\'' -A2'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias fstop='ps aux | fzf'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias showtime='date +%T | figlet'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias history='history | fzf'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> /home/$SUDO_USER/.bash_aliases
-echo "alias dict='dict -d wn'" >> /home/$SUDO_USER/.bash_aliases
+sudo chmod +x ./aliases.sh
+source ./aliases.sh
 
 # Reload the .bashrc file
 source /home/$SUDO_USER/.bashrc
