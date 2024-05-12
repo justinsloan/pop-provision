@@ -206,10 +206,11 @@ clear
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/yubikey.sh | sudo -u $SUDO_USER bash
 
 # Create a certificate for Barrier
-openssl req -x509 -nodes -days 365 -subj /CN=Barrier \ 
-    -newkey rsa:2048 \
-    -keyout /home/$SUDO_USER/.local/share/barrier/SSL/Barrier.pem \
-    -out /home/$SUDO_USER/.local/share/barrier/SSL/Barrier.pem
+mkdir -p /home/$SUDO_USER/.local/share/barrier/SSL/
+openssl req -x509 -nodes -days 365 -subj /CN=Barrier -newkey rsa:2048 -keyout /home/$SUDO_USER/.local/share/barrier/SSL/Barrier.pem -out /home/$SUDO_USER/.local/share/barrier/SSL/Barrier.pem
+
+# Update the Pop_OS! recovery partition
+pop-upgrade recovery upgrade from-release
 
 clear
 
