@@ -1,6 +1,7 @@
 brave-browser
 tailscale
 bind9-dnsutils
+hardinfo
 gnupg 
 gthumb
 gdu
