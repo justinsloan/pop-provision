@@ -214,6 +214,11 @@ pop-upgrade recovery upgrade from-release
 
 clear
 
+# Select your default terminal
+sudo update-alternatives --config x-terminal-emulator
+
+clear
+
 echo "==> Provisioning of $HOSTNAME is complete."
 
 exit 0
