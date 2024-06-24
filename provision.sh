@@ -181,6 +181,10 @@ do
     installCodiumExtension $line
 done < codium_extensions.txt
 
+# Install the Micro editor
+curl https://getmic.ro | bash
+sudo mv micro /usr/bin
+
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
 sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/fonts.sh | sudo -u $SUDO_USER bash
