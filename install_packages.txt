@@ -8,6 +8,7 @@ gdu
 iperf3
 apt-transport-https
 cabextract
+gnome-characters
 htop 
 ncdu
 tmux 
