@@ -28,7 +28,7 @@
 # | OTHER DEALINGS IN THE SOFTWARE.                                        |
 # +------------------------------------------------------------------------+
 
-# TODO: turn the long lists into loops based on a text file
+# TODO: choose custom packages config or unattended
 # TODO: allow the user to specify which text file to use
 
 $HOSTNAME=$(uname -n)
@@ -127,10 +127,6 @@ rm -f vscodium.gpg
 ### Client for Microsoft OneDrive
 echo 'deb http://download.opensuse.org/repositories/home:/jstaf/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:jstaf.list
 curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_jstaf.gpg > /dev/null
-
-## Brave Browser
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 ## Tailscale
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg > /dev/null
