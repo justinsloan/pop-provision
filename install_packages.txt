@@ -1,4 +1,3 @@
-brave-browser
 tailscale
 bind9-dnsutils
 hardinfo
@@ -21,15 +20,13 @@ remmina
 inetutils-traceroute
 traceroute
 cmatrix 
-neofetch
 figlet
 linuxlogo
 cowsay
 curtail 
 imagemagick 
 nautilus-image-converter
-gnome-tweaks 
-powershell
+gnome-tweaks
 onedriver
 sshpass
 heif-gdk-pixbuf
