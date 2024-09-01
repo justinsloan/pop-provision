@@ -1,9 +1,0 @@
-sleistner.vscode-fileutils
-streetsidesoftware.code-spell-checker
-ms-python.python
-janisdd.vscode-edit-csv
-ms-vscode.powershell
-pajoma.vscode-journal
-mads-hartmann.bash-ide-vscode
-timonwong.shellcheck
-GrapeCity.gc-excelviewer
