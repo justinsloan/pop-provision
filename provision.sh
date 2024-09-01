@@ -65,15 +65,15 @@ installPythonPackage() {
     clear
 }
 
-installCodiumExtension() {
-    sudo -u $SUDO_USER codium - --install-extension $1
-    clear
-}
-
-
 # +------------------------------------------------------------------------+
 
 echo "==> Starting provisioning for $HOSTNAME."
+
+# Install dependencies
+sudo apt update
+sudo apt install -y curl nala dconf-editor
+
+clear
 
 # Check for local purge, install and alias lists, if not found pull 
 # standard lists from repository
@@ -89,19 +89,9 @@ if [ ! -f python_packages.txt ]; then
     curl -o python_packages.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/python_packages.txt
 fi
 
-if [ ! -f codium_extensions.txt ]; then
-    curl -o codium_extensions.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/codium_extensions.txt
-fi
-
 if [ ! -f aliases.sh ]; then
     curl -o codium_extensions.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/aliases.sh
 fi
-
-# Install dependencies
-sudo apt update
-sudo apt install -y curl nala dconf-editor
-
-clear
 
 # Fetch the fastest mirror repo
 sudo nala fetch
@@ -114,26 +104,15 @@ sudo nala fetch
 # rm microsoft.gpg
 
 ## Microsoft Debian Bulls Eye
-curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod bullseye main" > /etc/apt/sources.list.d/microsoft.list'
-
-## VS Codium
-curl https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor > vscodium.gpg
-sudo install -o root -g root -m 644 vscodium.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64] https://download.vscodium.com/debs vscodium main" > /etc/apt/sources.list.d/vscodium.list'
-rm -f vscodium.gpg
-
-## OneDriver
-### Client for Microsoft OneDrive
-echo 'deb http://download.opensuse.org/repositories/home:/jstaf/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:jstaf.list
-curl -fsSL https://download.opensuse.org/repositories/home:jstaf/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_jstaf.gpg > /dev/null
+#curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+#sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod bullseye main" > /etc/apt/sources.list.d/microsoft.list'
 
 ## Tailscale
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg > /dev/null
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 
 # Fetch updates
-sudo apt update 
+sudo nala update 
 
 # Purge/Remove Unneeded Default Packages
 # for each line in the text file, purge the package
@@ -170,13 +149,6 @@ do
     installPythonPackage $line
 done < python_packages.txt
 
-# Install Codium extensions
-# for each line in the text file, install the package
-while IFS= read -r line
-do
-    installCodiumExtension $line
-done < codium_extensions.txt
-
 # Install the Micro editor
 curl https://getmic.ro | bash
 sudo mv micro /usr/bin
@@ -203,7 +175,7 @@ source /home/$SUDO_USER/.bashrc
 clear
 
 # Setup Yubikey authentication
-sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/yubikey.sh | sudo -u $SUDO_USER bash
+#sudo -u $SUDO_USER curl https://raw.githubusercontent.com/justinsloan/pop-provision/main/yubikey.sh | sudo -u $SUDO_USER bash
 
 # Create a certificate for Barrier
 mkdir -p /home/$SUDO_USER/.local/share/barrier/SSL/
@@ -211,11 +183,6 @@ openssl req -x509 -nodes -days 365 -subj /CN=Barrier -newkey rsa:2048 -keyout /h
 
 # Update the Pop_OS! recovery partition
 pop-upgrade recovery upgrade from-release
-
-clear
-
-# Select your default terminal
-sudo update-alternatives --config x-terminal-emulator
 
 clear
 
