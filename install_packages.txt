@@ -4,7 +4,6 @@ hardinfo
 gnupg 
 gthumb
 gdu
-iperf3
 apt-transport-https
 cabextract
 gnome-characters
@@ -12,8 +11,6 @@ htop
 ncdu
 tmux 
 nmap
-foliate
-codium 
 python3-pip 
 twine 
 remmina
@@ -27,9 +24,6 @@ curtail
 imagemagick 
 nautilus-image-converter
 gnome-tweaks
-onedriver
-sshpass
-heif-gdk-pixbuf
 gnome-sushi
 flameshot
 autokey-gtk
@@ -40,8 +34,6 @@ virtualbox
 virtualbox-guest-additions-iso
 system76-keyboard-configurator
 powertop
-empathy
-telepathy-rakia
 clamav
 newsboat
 dict
