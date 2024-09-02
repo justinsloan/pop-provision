@@ -155,6 +155,8 @@ sudo mv micro /usr/bin
 
 # Install Ollama
 curl -fsSL https://ollama.com/install.sh | sh
+ollama pull nomic-embed-text
+ollama pull phi3:mini
 echo 'Environment="HSA_OVERRIDE_GFX_VERSION=11.0.0"' | sudo tee /etc/systemd/system/ollama.service.d/override.conf
 sudo systemctl daemon-reload
 
