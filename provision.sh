@@ -150,8 +150,11 @@ do
 done < python_packages.txt
 
 # Install the Micro editor
-curl https://getmic.ro | bash
+curl https://getmic.ro | sh
 sudo mv micro /usr/bin
+
+# Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
 
 # Install Microsoft Fonts
 sudo -u $SUDO_USER mkdir /home/$SUDO_USER/.fonts 
