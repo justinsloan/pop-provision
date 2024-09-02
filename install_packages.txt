@@ -1,5 +1,6 @@
 geany
 geany-plugins
+radeontop
 tailscale
 bind9-dnsutils
 hardinfo
