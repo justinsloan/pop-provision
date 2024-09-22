@@ -90,11 +90,11 @@ if [ ! -f python_packages.txt ]; then
 fi
 
 if [ ! -f aliases.sh ]; then
-    curl -o codium_extensions.txt https://raw.githubusercontent.com/justinsloan/pop-provision/main/aliases.sh
+    curl -o aliases.sh https://raw.githubusercontent.com/justinsloan/pop-provision/main/aliases.sh
 fi
 
 # Fetch the fastest mirror repo
-sudo nala fetch
+#sudo nala fetch
 
 # Install Additional Repositories
 ## Microsoft Edge (I keep this here because I use Edge for work))
@@ -190,6 +190,9 @@ openssl req -x509 -nodes -days 365 -subj /CN=Barrier -newkey rsa:2048 -keyout /h
 
 # Update the Pop_OS! recovery partition
 pop-upgrade recovery upgrade from-release
+
+# Create or re-attach mdadm RAID5
+sudo mdadm --create -v /dev/md0 --level=5 --raid-devices=3 /dev/sda /dev/sdb /dev/sdc
 
 clear
 
