@@ -37,7 +37,6 @@ virtualbox-guest-additions-iso
 system76-keyboard-configurator
 powertop
 clamav
-newsboat
 dict
 xfce4-dict
 rclone
@@ -45,3 +44,4 @@ barrier
 docker.io
 docker-compose
 sshfs
+fail2ban
