@@ -1,5 +1,4 @@
-geany
-geany-plugins
+bat
 radeontop
 tailscale
 bind9-dnsutils
